@@ -3,12 +3,14 @@ export const siteConfig = {
   shortName: "TPT APK",
   description:
     "Download Teen Patti Tiger APK latest version for Android. Play Teen Patti, Dragon vs Tiger, Slots & more. Free download, safe & tested for Pakistan players.",
-  url: "https://teenpattitiger.com",
-  logo: "/images/logo.png",
-  apkVersion: "2.5.1",
+  url: "https://teenpattitiger.com.pk",
+  logo: "/images/teen-patti-tiger-logo.webp",
+  /** Social share default (1200×630 asset recommended; using existing wide hero asset until a dedicated OG image is added) */
+  defaultOgImage: "/images/teen-patti-tiger.webp",
+  apkVersion: "1.4",
   apkSize: "48 MB",
   apkLastUpdated: "2026-04-20",
-  apkDownloadUrl: "#download",
+  apkDownloadUrl: "https://pk3pattitiger.com/?from_gameid=8177465&channelCode=7989368",
   keywords: [
     "Teen Patti Tiger APK",
     "Teen Patti Tiger download",
@@ -24,7 +26,7 @@ export const siteConfig = {
     youtube: "https://youtube.com",
   },
   contact: {
-    email: "support@teenpattitiger.com",
+    email: "teenpattitiger2@gmail.com",
   },
 };
 
@@ -70,7 +72,7 @@ export const blogPosts = [
     date: "2026-04-15",
     readTime: "8 min read",
     category: "Guide",
-    image: "/images/blog/how-to-play.jpg",
+    image: "/images/how-to-play-teen-patti-tiger.webp",
     author: "Ahmad Raza",
     authorRole: "Gaming Expert",
   },
@@ -82,7 +84,7 @@ export const blogPosts = [
     date: "2026-04-10",
     readTime: "6 min read",
     category: "Strategy",
-    image: "/images/blog/tips-tricks.jpg",
+    image: "/images/teen-patti-tiger-tips-and-tricks.webp",
     author: "Sara Khan",
     authorRole: "Pro Player",
   },
@@ -94,7 +96,7 @@ export const blogPosts = [
     date: "2026-04-05",
     readTime: "10 min read",
     category: "Earning",
-    image: "/images/blog/earning-guide.jpg",
+    image: "/images/teen-patti-tiger-earning-guide.webp",
     author: "Usman Ali",
     authorRole: "Finance Expert",
   },
@@ -106,7 +108,7 @@ export const blogPosts = [
     date: "2026-04-01",
     readTime: "5 min read",
     category: "Tutorial",
-    image: "/images/blog/install-guide.jpg",
+    image: "/images/download-teen-patti-tiger-on-android.webp",
     author: "Fatima Malik",
     authorRole: "Tech Writer",
   },
@@ -180,7 +182,7 @@ export const faqs = [
   {
     question: "What is the latest version of Teen Patti Tiger?",
     answer:
-      "The latest version is v2.5.1 (released April 2026). Always download from our official page to get the latest, most secure version.",
+      "The latest version is v1.4 (released April 2026). Always download from our official page to get the latest, most secure version.",
   },
   {
     question: "Does Teen Patti Tiger work on iPhone (iOS)?",

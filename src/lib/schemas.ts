@@ -1,5 +1,7 @@
 import { siteConfig } from "./siteConfig";
 
+const abs = (path: string) => `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`;
+
 export function softwareAppSchema() {
   return {
     "@context": "https://schema.org",
@@ -10,7 +12,7 @@ export function softwareAppSchema() {
     applicationSubCategory: "CardGame",
     description: siteConfig.description,
     url: siteConfig.url,
-    downloadUrl: `${siteConfig.url}/teen-patti-tiger-apk-download`,
+    downloadUrl: abs("/teen-patti-tiger-apk-download"),
     softwareVersion: siteConfig.apkVersion,
     fileSize: siteConfig.apkSize,
     datePublished: "2024-01-01",
@@ -31,6 +33,7 @@ export function softwareAppSchema() {
     },
     author: {
       "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
       name: siteConfig.name,
       url: siteConfig.url,
     },
@@ -52,9 +55,7 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
   };
 }
 
-export function breadcrumbSchema(
-  items: { name: string; url: string }[]
-) {
+export function breadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -75,14 +76,13 @@ export function articleSchema(post: {
   author: string;
   image?: string;
 }) {
+  const imageUrl = post.image ? abs(post.image) : abs(siteConfig.defaultOgImage);
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-    image: post.image
-      ? `${siteConfig.url}${post.image}`
-      : `${siteConfig.url}/images/og-default.jpg`,
+    image: imageUrl,
     datePublished: post.date,
     dateModified: post.date,
     author: {
@@ -91,10 +91,11 @@ export function articleSchema(post: {
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        url: `${siteConfig.url}/images/logo.png`,
+        url: abs(siteConfig.logo),
       },
     },
     mainEntityOfPage: {
@@ -108,9 +109,10 @@ export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/logo.png`,
+    logo: abs(siteConfig.logo),
     description: siteConfig.description,
     contactPoint: {
       "@type": "ContactPoint",
@@ -124,5 +126,19 @@ export function organizationSchema() {
       siteConfig.social.facebook,
       siteConfig.social.youtube,
     ],
+  };
+}
+
+export function webSiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
+    name: siteConfig.name,
+    alternateName: siteConfig.shortName,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    inLanguage: "en-PK",
+    publisher: { "@id": `${siteConfig.url}/#organization` },
   };
 }

@@ -3,6 +3,8 @@ import { siteConfig } from "./siteConfig";
 
 interface MetaOptions {
   title?: string;
+  /** When true, `title` is used as the full document title (no `| ${siteConfig.name}` suffix). Use for the homepage. */
+  absoluteTitle?: boolean;
   description?: string;
   keywords?: string[];
   image?: string;
@@ -10,23 +12,34 @@ interface MetaOptions {
   noIndex?: boolean;
 }
 
+const ogImage = (image: string) => ({
+  url: image,
+  width: 1200,
+  height: 630,
+  alt: siteConfig.name,
+});
+
 export function generateMeta({
   title,
+  absoluteTitle = false,
   description,
   keywords = [],
-  image = "/images/og-default.jpg",
+  image = siteConfig.defaultOgImage,
   path = "",
   noIndex = false,
 }: MetaOptions = {}): Metadata {
   const fullTitle = title
-    ? `${title} | ${siteConfig.name}`
+    ? absoluteTitle
+      ? title
+      : `${title} | ${siteConfig.name}`
     : `${siteConfig.name} - Download Latest APK for Pakistan`;
   const metaDesc = description || siteConfig.description;
   const url = `${siteConfig.url}${path}`;
   const allKeywords = [...siteConfig.keywords, ...keywords].join(", ");
 
   return {
-    title: fullTitle,
+    /* Absolute title prevents double-appending when parent layout has no title.template */
+    title: { absolute: fullTitle },
     description: metaDesc,
     keywords: allKeywords,
     authors: [{ name: siteConfig.name }],
@@ -44,14 +57,7 @@ export function generateMeta({
       title: fullTitle,
       description: metaDesc,
       siteName: siteConfig.name,
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: fullTitle,
-        },
-      ],
+      images: [ogImage(image)],
       locale: "en_PK",
     },
     twitter: {
@@ -59,41 +65,49 @@ export function generateMeta({
       title: fullTitle,
       description: metaDesc,
       images: [image],
-      creator: "@teenpattitiger",
     },
   };
 }
 
-export function generateArticleMeta(post: {
-  title: string;
-  excerpt: string;
-  slug: string;
-  date: string;
-  image?: string;
-  author: string;
-  category: string;
-}): Metadata {
+export function generateArticleMeta(
+  post: {
+    title: string;
+    excerpt: string;
+    slug: string;
+    date: string;
+    image?: string;
+    author: string;
+    category: string;
+  },
+  opts?: { metaTitle?: string; metaDescription?: string; keywords?: string[] }
+): Metadata {
+  const pageTitle = opts?.metaTitle ?? post.title;
+  const pageDesc = opts?.metaDescription ?? post.excerpt;
+  const image = post.image ?? siteConfig.defaultOgImage;
+  const base = generateMeta({
+    title: pageTitle,
+    description: pageDesc,
+    path: `/blog/${post.slug}`,
+    image,
+    keywords: [
+      ...(opts?.keywords ?? []),
+      post.category,
+      "Teen Patti Tiger blog",
+      "Teen Patti guide Pakistan",
+    ],
+  });
+
+  const fullTitle = `${pageTitle} | ${siteConfig.name}`;
+
   return {
-    ...generateMeta({
-      title: post.title,
-      description: post.excerpt,
-      path: `/blog/${post.slug}`,
-      image: post.image,
-      keywords: [post.category, "Teen Patti Tiger blog", "Teen Patti guide Pakistan"],
-    }),
+    ...base,
     openGraph: {
+      ...base.openGraph,
       type: "article",
-      title: `${post.title} | ${siteConfig.name}`,
-      description: post.excerpt,
+      title: fullTitle,
+      description: pageDesc,
       url: `${siteConfig.url}/blog/${post.slug}`,
-      images: [
-        {
-          url: post.image || "/images/og-default.jpg",
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
+      images: [ogImage(image)],
       publishedTime: post.date,
       authors: [post.author],
       section: post.category,

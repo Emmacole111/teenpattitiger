@@ -1,65 +1,63 @@
-import Image from "next/image";
+import HeroSection from "@/components/home/HeroSection";
+import TickerBanner from "@/components/home/TickerBanner";
+import HomeContent from "@/components/home/HomeContent";
+import BlogPreview from "@/components/home/BlogPreview";
+import CtaBanner from "@/components/home/CtaBanner";
+import { softwareAppSchema, faqSchema } from "@/lib/schemas";
+import { generateMeta } from "@/lib/metadata";
 
-export default function Home() {
+const homeFaqsSchema = [
+  { question: "Is Teen Patti Tiger safe to download?", answer: "Yes, the APK from the official teenpattitiger.com.pk site is safe. Avoid third-party download sites — they sometimes bundle modified APKs that can compromise your account." },
+  { question: "Can I play Teen Patti Tiger on iPhone?", answer: "Not yet. Android only for now. An iOS version has been mentioned but no confirmed release date." },
+  { question: "What's the minimum amount I can deposit?", answer: "Deposits typically start from 300 PKR, though this varies with current promotions." },
+  { question: "How long do withdrawals take?", answer: "2 to 5 minutes for most requests under 10,000 PKR. Larger amounts or late-night requests can take longer." },
+  { question: "Do I have to deposit to play?", answer: "No. Your welcome bonus, daily login rewards, and referral earnings give you enough to start playing without a deposit." },
+  { question: "Is there a bonus if I refer my friends?", answer: "Yes — 1,000 PKR per successful referral, plus lifetime commission on their active play." },
+];
+
+export const metadata = generateMeta({
+  absoluteTitle: true,
+  title: "Teen Patti Tiger APK – Free Download for Pakistan",
+  description:
+    "Download Teen Patti Tiger APK free. Play Teen Patti, Dragon vs Tiger & Aviator. JazzCash & EasyPaisa withdrawals in minutes.",
+  path: "",
+  keywords: [
+    "teen patti tiger",
+    "teen patti tiger apk",
+    "teen patti tiger download",
+    "teen patti tiger pakistan",
+    "3 patti tiger",
+    "3patti tiger",
+    "teen patti tiger apk download",
+    "3 patti tiger pakistan",
+    "teen patti tiger latest version",
+    "teen patti tiger jazzcash",
+    "teen patti tiger easypaisa",
+    "teen patti tiger real money",
+    "teen patti tiger referral",
+    "teen patti tiger v1.4",
+    "teen patti tiger earning app pakistan",
+    "3 patti tiger apk download",
+  ],
+});
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(homeFaqsSchema)) }}
+      />
+
+      <HeroSection />
+      <TickerBanner />
+      <HomeContent />
+      <BlogPreview />
+      <CtaBanner />
+    </>
   );
 }
