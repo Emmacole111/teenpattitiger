@@ -25,17 +25,17 @@ export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
           __html: JSON.stringify(breadcrumbSchema(schemaItems)),
         }}
       />
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-white/50 flex-wrap">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-white/65 flex-wrap">
         <Link
           href="/"
           className="flex items-center gap-1 hover:text-yellow-400 transition-colors"
         >
-          <Home className="w-3.5 h-3.5" />
+          <Home className="w-3.5 h-3.5 shrink-0" aria-hidden />
           <span>Home</span>
         </Link>
         {items.map((item, idx) => (
           <span key={idx} className="flex items-center gap-1.5">
-            <ChevronRight className="w-3 h-3" />
+            <ChevronRight className="w-3 h-3 shrink-0 opacity-70" aria-hidden />
             {item.href && idx < items.length - 1 ? (
               <Link
                 href={item.href}

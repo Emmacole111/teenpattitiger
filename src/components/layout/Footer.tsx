@@ -57,7 +57,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <div className={`text-lg font-black ${color}`}>{value}</div>
-                  <div className="text-xs text-white/40">{label}</div>
+                  <div className="text-xs text-white/50">{label}</div>
                 </div>
               </div>
             ))}
@@ -86,7 +86,7 @@ export default function Footer() {
                 <div className="text-[9px] text-yellow-400/60 tracking-widest">APK PAKISTAN</div>
               </div>
             </Link>
-            <p className="text-xs text-white/40 leading-relaxed mb-5">
+            <p className="text-xs text-white/50 leading-relaxed mb-5">
               Pakistan&apos;s most trusted source for Teen Patti Tiger APK. Safe, fast, and free.
             </p>
             <a
@@ -111,7 +111,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-xs text-white/40 hover:text-yellow-400 transition-colors flex items-center gap-1.5 group"
+                      className="text-xs text-white/50 hover:text-yellow-400 transition-colors flex items-center gap-1.5 group"
                     >
                       <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-yellow-400 transition-colors flex-shrink-0" />
                       {link.label}
@@ -127,11 +127,11 @@ export default function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop:"1px solid rgba(255,255,255,0.04)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-xs text-white/25">
+          <p className="text-xs text-white/45">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <p className="text-xs text-white/25 text-center">
-            <span className="text-yellow-400/50">Disclaimer:</span> For entertainment only. Play responsibly. 18+
+          <p className="text-xs text-white/45 text-center">
+            <span className="text-yellow-400/60">Disclaimer:</span> For entertainment only. Play responsibly. 18+
           </p>
           <div className="flex items-center gap-5">
             {[
@@ -139,7 +139,7 @@ export default function Footer() {
               { label: "Disclaimer", href: "/disclaimer" },
               { label: "Contact", href: "/contact" },
             ].map((l) => (
-              <Link key={l.href} href={l.href} className="text-xs text-white/25 hover:text-yellow-400 transition-colors">
+              <Link key={l.href} href={l.href} className="text-xs text-white/45 hover:text-yellow-400 transition-colors">
                 {l.label}
               </Link>
             ))}

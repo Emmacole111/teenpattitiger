@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useId } from "react";
 import { BookOpen, ChevronDown } from "lucide-react";
 
 interface TocItem {
@@ -9,6 +9,7 @@ interface TocItem {
 }
 
 export default function TableOfContents({ items }: { items: TocItem[] }) {
+  const panelId = useId();
   const [activeId, setActiveId] = useState<string>("");
   const [open, setOpen] = useState(true);
 
@@ -33,17 +34,22 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
   return (
     <div className="glass-card rounded-2xl border border-white/10 overflow-hidden">
       <button
+        type="button"
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors"
+        aria-expanded={open}
+        aria-controls={panelId}
       >
         <span className="flex items-center gap-2 font-semibold text-white text-sm">
-          <BookOpen className="w-4 h-4 text-yellow-400" />
+          <BookOpen className="w-4 h-4 text-yellow-400" aria-hidden />
           Table of Contents
         </span>
-        <ChevronDown className={`w-4 h-4 text-white/50 transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown
+          aria-hidden
+          className={`w-4 h-4 text-white/50 transition-transform ${open ? "rotate-180" : ""}`}
+        />
       </button>
-      {open && (
-        <div className="px-4 pb-4 space-y-1">
+      <div id={panelId} hidden={!open} className="px-4 pb-4 space-y-1">
           {items.map((item) => (
             <a
               key={item.id}
@@ -57,8 +63,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
               {item.title}
             </a>
           ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 }

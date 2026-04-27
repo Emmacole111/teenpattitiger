@@ -10,6 +10,8 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+  adjustFontFallback: true,
+  preload: true,
 });
 
 export const viewport: Viewport = {
@@ -88,9 +90,17 @@ export default function RootLayout({
           }}
         />
       </head>
-        <body suppressHydrationWarning className="antialiased bg-[#050510] text-white min-h-screen flex flex-col">
+        <body
+          suppressHydrationWarning
+          className={`${inter.className} antialiased bg-[#050510] text-white min-h-screen flex flex-col`}
+        >
+        <a href="#site-main" className="skip-link">
+          Skip to main content
+        </a>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main id="site-main" className="flex-1">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

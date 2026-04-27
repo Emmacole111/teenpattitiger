@@ -70,34 +70,43 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div ref={menuRef} className="hidden lg:flex items-center gap-0.5">
-            {navLinks.map((link) =>
-              link.children ? (
-                <div key={link.label} className="relative">
-                  <div
-                    onMouseEnter={() => setActiveMenu(link.label)}
-                    onMouseLeave={() => setActiveMenu(null)}
-                    className={`flex items-center rounded-xl text-sm font-semibold transition-all duration-200 ${
-                      activeMenu === link.label
-                        ? "text-yellow-400 bg-yellow-400/10"
-                        : "text-white/70 hover:text-white hover:bg-white/5"
-                    }`}
-                  >
-                    <Link
-                      href={link.href}
-                      className="pl-3.5 py-2 pr-1"
-                    >
-                      {link.label}
-                    </Link>
-                    <button
-                      onClick={() => setActiveMenu(activeMenu === link.label ? null : link.label)}
-                      className="pr-3 py-2 flex items-center"
-                      aria-label={`${link.label} menu`}
-                    >
-                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMenu === link.label ? "rotate-180 text-yellow-400" : ""}`} />
-                    </button>
-                  </div>
-                  {activeMenu === link.label && (
+            {navLinks.map((link) => {
+              if (link.children) {
+                const submenuId = `nav-submenu-${link.label.toLowerCase().replace(/\s+/g, "-")}`;
+                return (
+                  <div key={link.label} className="relative">
                     <div
+                      onMouseEnter={() => setActiveMenu(link.label)}
+                      onMouseLeave={() => setActiveMenu(null)}
+                      className={`flex items-center rounded-xl text-sm font-semibold transition-all duration-200 ${
+                        activeMenu === link.label
+                          ? "text-yellow-400 bg-yellow-400/10"
+                          : "text-white/70 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      <Link href={link.href} className="pl-3.5 py-2 pr-1">
+                        {link.label}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => setActiveMenu(activeMenu === link.label ? null : link.label)}
+                        className="pr-3 py-2 flex items-center"
+                        aria-label={`${link.label} submenu`}
+                        aria-expanded={activeMenu === link.label}
+                        aria-haspopup="true"
+                        aria-controls={submenuId}
+                      >
+                        <ChevronDown
+                          aria-hidden
+                          className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMenu === link.label ? "rotate-180 text-yellow-400" : ""}`}
+                        />
+                      </button>
+                    </div>
+                    <div
+                      id={submenuId}
+                      role="region"
+                      aria-label={`${link.label} submenu`}
+                      hidden={activeMenu !== link.label}
                       onMouseEnter={() => setActiveMenu(link.label)}
                       onMouseLeave={() => setActiveMenu(null)}
                       className="absolute top-full left-0 mt-2 w-52 rounded-2xl p-1.5 shadow-2xl border border-white/8"
@@ -110,14 +119,15 @@ export default function Navbar() {
                           href={child.href}
                           className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm text-white/70 hover:text-yellow-400 hover:bg-yellow-400/8 transition-all duration-150 font-medium"
                         >
-                          <span className="w-1 h-1 rounded-full bg-yellow-400/50" />
+                          <span className="w-1 h-1 rounded-full bg-yellow-400/50" aria-hidden />
                           {child.label}
                         </Link>
                       ))}
                     </div>
-                  )}
-                </div>
-              ) : (
+                  </div>
+                );
+              }
+              return (
                 <Link
                   key={link.label}
                   href={link.href}
@@ -125,8 +135,8 @@ export default function Navbar() {
                 >
                   {link.label}
                 </Link>
-              )
-            )}
+              );
+            })}
           </div>
 
           {/* Right CTA */}
@@ -144,21 +154,26 @@ export default function Navbar() {
               </span>
             </a>
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative p-2.5 rounded-xl border border-white/10 text-white/80 hover:bg-white/8 hover:border-white/20 transition-all"
+              className="lg:hidden relative min-w-11 min-h-11 inline-flex items-center justify-center p-2 rounded-xl border border-white/10 text-white/80 hover:bg-white/8 hover:border-white/20 transition-all"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
+              aria-controls="primary-mobile-navigation"
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? <X className="w-5 h-5" aria-hidden /> : <Menu className="w-5 h-5" aria-hidden />}
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div
-          className="lg:hidden border-t border-white/8"
-          style={{ background: "rgba(3,3,15,0.98)", backdropFilter: "blur(24px)" }}
-        >
+      <div
+        id="primary-mobile-navigation"
+        hidden={!isOpen}
+        className="lg:hidden border-t border-white/8"
+        style={{ background: "rgba(3,3,15,0.98)", backdropFilter: "blur(24px)" }}
+      >
           <div className="max-w-7xl mx-auto px-4 py-5 space-y-1">
             {navLinks.map((link) => (
               <div key={link.label}>
@@ -199,8 +214,7 @@ export default function Navbar() {
               </a>
             </div>
           </div>
-        </div>
-      )}
+      </div>
     </nav>
   );
 }

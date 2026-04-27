@@ -47,9 +47,9 @@ export default function BlogCard({
               {category}
             </span>
           )}
-          <div className="flex items-center gap-3 text-xs text-white/40 mb-3">
+          <div className="flex items-center gap-3 text-xs text-white/60 mb-3">
             <span className="flex items-center gap-1">
-              <Calendar className="w-3 h-3" />
+              <Calendar className="w-3 h-3 shrink-0" aria-hidden />
               {new Date(date).toLocaleDateString("en-PK", {
                 month: "short",
                 day: "numeric",
@@ -57,7 +57,7 @@ export default function BlogCard({
               })}
             </span>
             <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3" />
+              <Clock className="w-3 h-3 shrink-0" aria-hidden />
               {readTime}
             </span>
           </div>
@@ -66,7 +66,7 @@ export default function BlogCard({
           </h3>
           <p className="text-sm text-white/60 line-clamp-2 leading-relaxed mb-4">{excerpt}</p>
           <span className="flex items-center gap-1.5 text-sm font-semibold text-yellow-400 group-hover:gap-2.5 transition-all mt-auto">
-            Read More <ArrowRight className="w-4 h-4" />
+            Read More <ArrowRight className="w-4 h-4 shrink-0" aria-hidden />
           </span>
         </div>
       </article>

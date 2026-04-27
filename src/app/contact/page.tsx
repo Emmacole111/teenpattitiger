@@ -46,42 +46,65 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div className="glass-card rounded-3xl border border-white/10 p-8">
             <h2 className="text-2xl font-black text-white mb-6">Send Us a Message</h2>
-            <form className="space-y-5">
+            <form className="space-y-5" noValidate>
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-white/70 mb-2">Your Name</label>
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-white/80 mb-2">
+                    Your Name
+                  </label>
                   <input
+                    id="contact-name"
+                    name="name"
                     type="text"
+                    autoComplete="name"
                     placeholder="Ahmad Raza"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-yellow-400/50 transition-colors text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-yellow-400/50 transition-colors text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-white/70 mb-2">Email Address</label>
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-white/80 mb-2">
+                    Email Address
+                  </label>
                   <input
+                    id="contact-email"
+                    name="email"
                     type="email"
+                    autoComplete="email"
                     placeholder="your@email.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-yellow-400/50 transition-colors text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-yellow-400/50 transition-colors text-sm"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-white/70 mb-2">Subject</label>
-                <select className="w-full px-4 py-3 rounded-xl bg-[#0a0a1a] border border-white/10 text-white focus:outline-none focus:border-yellow-400/50 transition-colors text-sm">
-                  <option value="">Select a topic...</option>
-                  <option>Download Issue</option>
-                  <option>Installation Problem</option>
-                  <option>Bonus/Rewards Query</option>
-                  <option>Account Issue</option>
-                  <option>Other</option>
+                <label htmlFor="contact-subject" className="block text-sm font-medium text-white/80 mb-2">
+                  Subject
+                </label>
+                <select
+                  id="contact-subject"
+                  name="subject"
+                  className="w-full px-4 py-3 rounded-xl bg-[#0a0a1a] border border-white/10 text-white focus:border-yellow-400/50 transition-colors text-sm"
+                  defaultValue=""
+                >
+                  <option value="" disabled>
+                    Select a topic...
+                  </option>
+                  <option value="download">Download Issue</option>
+                  <option value="installation">Installation Problem</option>
+                  <option value="bonus">Bonus/Rewards Query</option>
+                  <option value="account">Account Issue</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-white/70 mb-2">Message</label>
+                <label htmlFor="contact-message" className="block text-sm font-medium text-white/80 mb-2">
+                  Message
+                </label>
                 <textarea
+                  id="contact-message"
+                  name="message"
                   rows={5}
                   placeholder="Describe your issue or question in detail..."
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-yellow-400/50 transition-colors text-sm resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-yellow-400/50 transition-colors text-sm resize-none"
                 />
               </div>
               <button

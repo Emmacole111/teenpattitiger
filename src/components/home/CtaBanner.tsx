@@ -49,10 +49,10 @@ export default function CtaBanner() {
               </Link>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-white/30">
+            <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-white/55">
               {[`v${siteConfig.apkVersion}`,`${siteConfig.apkSize}`,"Android 5.0+","Free","JazzCash & EasyPaisa"].map((item, i) => (
                 <span key={i} className="flex items-center gap-2">
-                  {i > 0 && <span className="w-1 h-1 rounded-full bg-white/15" />}
+                  {i > 0 && <span className="w-1 h-1 rounded-full bg-white/30" aria-hidden />}
                   {item}
                 </span>
               ))}

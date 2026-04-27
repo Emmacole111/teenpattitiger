@@ -26,9 +26,11 @@ export default function TickerBanner() {
 
       <div className="flex ticker-animate" style={{ width:"max-content" }}>
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center gap-6 px-8 text-xs font-semibold whitespace-nowrap text-white/60 hover:text-yellow-400 transition-colors cursor-default">
+          <span key={i} className="flex items-center gap-6 px-8 text-xs font-semibold whitespace-nowrap text-white/70 hover:text-yellow-400 transition-colors cursor-default">
             {item}
-            <span className="text-yellow-400/30">◆</span>
+            <span className="text-yellow-400/55" aria-hidden>
+              ◆
+            </span>
           </span>
         ))}
       </div>

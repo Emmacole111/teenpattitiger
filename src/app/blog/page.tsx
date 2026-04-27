@@ -32,19 +32,19 @@ export default function BlogPage() {
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        {/* Category labels (display only — avoids inert buttons for a11y) */}
+        <div className="flex flex-wrap gap-2 mb-8" aria-label="Blog topics">
           {["All", "Guide", "Strategy", "Earning", "Tutorial"].map((cat) => (
-            <button
+            <span
               key={cat}
-              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+              className={`inline-flex px-4 py-2 rounded-xl text-sm font-medium ${
                 cat === "All"
                   ? "bg-yellow-400 text-black"
-                  : "glass-card border border-white/10 text-white/70 hover:border-yellow-400/30 hover:text-yellow-400"
+                  : "glass-card border border-white/10 text-white/70"
               }`}
             >
               {cat}
-            </button>
+            </span>
           ))}
         </div>
 

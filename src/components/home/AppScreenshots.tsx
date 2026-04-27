@@ -107,20 +107,26 @@ export default function AppScreenshots() {
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full neon-badge text-yellow-400 text-xs font-bold mb-4 uppercase tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" aria-hidden />
             App Screenshots
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
             Inside Teen Patti Tiger — <span className="gradient-text">Real Screenshots</span>
           </h2>
-          <p className="text-white/45 text-sm">No mockups. These are actual screens from the app.</p>
+          <p className="text-white/65 text-sm">No mockups. These are actual screens from the app.</p>
         </div>
 
         {/* Main slider card */}
         <div className="glass-card rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
 
           {/* Image area */}
-          <div className="relative bg-[#08081a]" style={{ height: "460px" }}>
+          <div
+            className="relative bg-[#08081a]"
+            style={{ height: "460px" }}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Teen Patti Tiger app screenshots"
+          >
 
             {/* Active image */}
             <div
@@ -161,20 +167,24 @@ export default function AppScreenshots() {
 
             {/* Prev arrow */}
             <button
+              type="button"
               onClick={back}
               className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-2xl flex items-center justify-center text-white/70 hover:text-yellow-400 transition-all"
               style={{ background: "rgba(0,0,0,0.45)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.1)" }}
+              aria-label="Previous screenshot"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5" aria-hidden />
             </button>
 
             {/* Next arrow */}
             <button
+              type="button"
               onClick={next}
               className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-2xl flex items-center justify-center text-white/70 hover:text-yellow-400 transition-all"
               style={{ background: "rgba(0,0,0,0.45)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.1)" }}
+              aria-label="Next screenshot"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5" aria-hidden />
             </button>
 
             {/* Label + counter badge */}
@@ -210,6 +220,7 @@ export default function AppScreenshots() {
             <div className="flex items-center gap-2 flex-shrink-0">
               {slides.map((s, i) => (
                 <button
+                  type="button"
                   key={i}
                   onClick={() => goTo(i, i > active ? "right" : "left")}
                   className={`relative rounded-lg overflow-hidden flex-shrink-0 transition-all duration-300 ${
@@ -217,8 +228,10 @@ export default function AppScreenshots() {
                       ? "w-10 h-10 ring-2 ring-yellow-400 ring-offset-1 ring-offset-black/50 scale-110"
                       : "w-8 h-8 opacity-45 hover:opacity-75 ring-1 ring-white/15"
                   }`}
+                  aria-label={`Show screenshot: ${s.label}`}
+                  aria-current={i === active ? "true" : undefined}
                 >
-                  <Image src={s.src} alt={s.alt} fill className="object-cover" sizes="40px" />
+                  <Image src={s.src} alt="" fill className="object-cover" sizes="40px" />
                 </button>
               ))}
             </div>
@@ -227,6 +240,7 @@ export default function AppScreenshots() {
             <div className="flex items-center gap-1.5 flex-shrink-0">
               {slides.map((_, i) => (
                 <button
+                  type="button"
                   key={i}
                   onClick={() => goTo(i, i > active ? "right" : "left")}
                   className={`rounded-full transition-all duration-300 ${
@@ -234,6 +248,8 @@ export default function AppScreenshots() {
                       ? "w-6 h-2 bg-yellow-400"
                       : "w-2 h-2 bg-white/20 hover:bg-white/40"
                   }`}
+                  aria-label={`Go to screenshot ${i + 1} of ${slides.length}`}
+                  aria-current={i === active ? "true" : undefined}
                 />
               ))}
             </div>

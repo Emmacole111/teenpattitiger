@@ -9,13 +9,14 @@ export default function BlogPreview() {
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
-            <p className="text-yellow-400/70 text-xs font-bold tracking-widest uppercase mb-2">Blog & Guides</p>
+            <p className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2">Blog & Guides</p>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
               Learn & <span className="gradient-text">Win More</span>
             </h2>
           </div>
           <Link href="/blog" className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-bold text-sm transition-colors group">
-            All Articles <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            All Articles{" "}
+            <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" aria-hidden />
           </Link>
         </div>
 
@@ -38,15 +39,15 @@ export default function BlogPreview() {
                   <h3 className="font-black text-white mt-3 mb-2 text-sm leading-snug line-clamp-2 group-hover:text-yellow-400 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-xs text-white/50 leading-relaxed line-clamp-3 mb-4">{post.excerpt}</p>
+                  <p className="text-xs text-white/65 leading-relaxed line-clamp-3 mb-4">{post.excerpt}</p>
 
-                  <div className="flex items-center justify-between text-[10px] text-white/35 pt-3 border-t border-white/5">
+                  <div className="flex items-center justify-between text-[10px] text-white/60 pt-3 border-t border-white/5">
                     <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
+                      <Calendar className="w-3 h-3 shrink-0" aria-hidden />
                       {new Date(post.date).toLocaleDateString("en-PK", { month:"short", day:"numeric" })}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
+                      <Clock className="w-3 h-3 shrink-0" aria-hidden />
                       {post.readTime}
                     </span>
                   </div>
@@ -54,7 +55,10 @@ export default function BlogPreview() {
 
                 {/* Read more arrow */}
                 <div className="absolute bottom-4 right-4 w-7 h-7 rounded-full bg-yellow-400/0 group-hover:bg-yellow-400/15 flex items-center justify-center transition-all">
-                  <ArrowRight className="w-3.5 h-3.5 text-yellow-400 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5" />
+                  <ArrowRight
+                    className="w-3.5 h-3.5 text-yellow-400 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
                 </div>
               </article>
             </Link>

@@ -154,7 +154,7 @@ export default function HomeContent() {
                 <tbody>
                   {apkDetails.map((row) => (
                     <tr key={row.label}>
-                      <td className="font-medium text-white/70 w-2/5 text-xs">{row.label}</td>
+                      <td className="font-medium text-white/80 w-2/5 text-xs">{row.label}</td>
                       <td className="text-white text-xs font-semibold">{row.value}</td>
                     </tr>
                   ))}
@@ -308,15 +308,19 @@ export default function HomeContent() {
               Step-by-Step Install Guide <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="flex flex-wrap gap-4 text-sm text-white/50">
+          <div className="flex flex-wrap gap-4 text-sm text-white/65">
             <Link href="/old-versions" className="hover:text-yellow-400 transition-colors">
               📦 Download Old Versions
             </Link>
-            <span className="text-white/20">·</span>
+            <span className="text-white/45" aria-hidden>
+              ·
+            </span>
             <Link href="/teen-patti-tiger-for-pc" className="hover:text-yellow-400 transition-colors">
               💻 Teen Patti Tiger for PC
             </Link>
-            <span className="text-white/20">·</span>
+            <span className="text-white/45" aria-hidden>
+              ·
+            </span>
             <Link href="/teen-patti-tiger-apk-download" className="hover:text-yellow-400 transition-colors">
               📋 Full APK Details
             </Link>
@@ -355,7 +359,7 @@ export default function HomeContent() {
                 </p>
               </div>
               <div className="pt-3 border-t border-white/8 space-y-2">
-                <p className="text-xs text-white/40 font-semibold uppercase tracking-wider">After registering</p>
+                <p className="text-xs text-white/60 font-semibold uppercase tracking-wider">After registering</p>
                 <Link href="/bonuses/welcome-bonus" className="flex items-center justify-between text-sm text-white/70 hover:text-yellow-400 transition-colors py-1">
                   <span>→ Claim ₨5,000 Welcome Bonus</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -380,11 +384,11 @@ export default function HomeContent() {
 
           {/* Section header */}
           <div className="text-center mb-10">
-            <p className="text-yellow-400/70 text-xs font-bold tracking-widest uppercase mb-2">Payments</p>
+            <p className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2">Payments</p>
             <h2 className="text-2xl sm:text-3xl font-black text-white">
               Deposits &amp; <span className="gradient-text">Withdrawals</span>
             </h2>
-            <p className="text-white/50 text-sm mt-2">Fast, local, and hassle-free payments — how <strong className="text-white/70">3patti tiger</strong> handles your money in Pakistan</p>
+            <p className="text-white/65 text-sm mt-2">Fast, local, and hassle-free payments — how <strong className="text-white/90">3patti tiger</strong> handles your money in Pakistan</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -397,7 +401,7 @@ export default function HomeContent() {
                   💳
                 </div>
                 <div>
-                  <h2 className="font-black text-white text-base leading-tight">Add Money (Deposit)</h2>
+                  <h3 className="font-black text-white text-base leading-tight">Add Money (Deposit)</h3>
                   <p className="text-green-400 text-xs font-semibold">Min: ₨300 · Instant credit</p>
                 </div>
                 <div className="ml-auto px-2.5 py-1 rounded-full text-[10px] font-bold text-green-400" style={{ background:"rgba(74,222,128,0.12)", border:"1px solid rgba(74,222,128,0.25)" }}>
@@ -420,7 +424,7 @@ export default function HomeContent() {
 
               {/* Payment methods */}
               <div className="px-6 pb-6">
-                <p className="text-[10px] text-white/35 font-bold uppercase tracking-wider mb-3">Accepted Methods</p>
+                <p className="text-[10px] text-white/55 font-bold uppercase tracking-wider mb-3">Accepted Methods</p>
                 <div className="grid grid-cols-3 gap-2.5">
                   {[
                     { name:"JazzCash", emoji:"💚", color:"rgba(74,222,128,0.12)", border:"rgba(74,222,128,0.25)", text:"text-green-400" },
@@ -448,7 +452,7 @@ export default function HomeContent() {
                   💸
                 </div>
                 <div>
-                  <h2 className="font-black text-white text-base leading-tight">Withdraw Money</h2>
+                  <h3 className="font-black text-white text-base leading-tight">Withdraw Money</h3>
                   <p className="text-yellow-400 text-xs font-semibold">Min: ₨500 · 2–5 min processing</p>
                 </div>
                 <div className="ml-auto px-2.5 py-1 rounded-full text-[10px] font-bold text-yellow-400" style={{ background:"rgba(245,197,24,0.12)", border:"1px solid rgba(245,197,24,0.25)" }}>
@@ -471,7 +475,7 @@ export default function HomeContent() {
 
               {/* Speed table */}
               <div className="px-6 pb-5">
-                <p className="text-[10px] text-white/35 font-bold uppercase tracking-wider mb-3">Processing Speed</p>
+                <p className="text-[10px] text-white/55 font-bold uppercase tracking-wider mb-3">Processing Speed</p>
                 <div className="rounded-2xl overflow-hidden" style={{ border:"1px solid rgba(255,255,255,0.07)" }}>
                   {[
                     { amount:"Under ₨10,000", time:"2–5 minutes", color:"text-green-400", dot:"bg-green-400", bar:"bg-green-400", width:"w-1/4" },
@@ -549,7 +553,7 @@ export default function HomeContent() {
                   <div key={item.label} className="flex items-center gap-3 glass-card rounded-xl border border-white/10 p-3.5">
                     <span className="text-2xl">{item.icon}</span>
                     <div>
-                      <div className="text-xs text-white/50">{item.label}</div>
+                      <div className="text-xs text-white/60">{item.label}</div>
                       <div className="text-sm font-bold text-white">{item.value}</div>
                     </div>
                   </div>
@@ -597,7 +601,7 @@ export default function HomeContent() {
               Is Teen Patti Tiger Real or Fake in Pakistan?{" "}
               <span className="gradient-text">Honest Answer</span>
             </h2>
-            <p className="text-sm text-white/50 mb-6 italic">
+            <p className="text-sm text-white/65 mb-6 italic">
               &ldquo;Is teen patti tiger real?&rdquo; is the most searched question about this app — so let&apos;s address it directly.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -700,7 +704,7 @@ export default function HomeContent() {
               </div>
             ))}
           </div>
-          <p className="text-sm text-white/50 mt-5 italic">
+          <p className="text-sm text-white/65 mt-5 italic">
             Bug fixes are ongoing. If something breaks, report it through in-app support instead of
             ditching the app — the team does push patches.
           </p>
@@ -778,7 +782,7 @@ export default function HomeContent() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass-card border border-white/8 text-sm text-white/60 hover:text-yellow-400 hover:border-yellow-400/20 transition-all"
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass-card border border-white/8 text-sm text-white/70 hover:text-yellow-400 hover:border-yellow-400/20 transition-all"
                 >
                   <span>{item.icon}</span>
                   <span>{item.label}</span>
@@ -786,7 +790,7 @@ export default function HomeContent() {
               ))}
             </div>
 
-            <p className="text-xs text-white/30">
+            <p className="text-xs text-white/55">
               Version {siteConfig.apkVersion} • {siteConfig.apkSize} • Android 5.0+ • Free to Download
             </p>
           </div>
